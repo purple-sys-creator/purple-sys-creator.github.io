@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们 - 国际物流之旅</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* 与首页一致的通用样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            background: #f8f9fa;
+        }
+
+        /* 与首页一致的导航栏 */
+        .navbar {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* 页面头部 - 与首页风格一致 */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8rem 0 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        }
+
+        .page-header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        /* 主要内容区域 */
+        .main-content {
+            padding: 5rem 0;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* 联系信息区域 - 卡片式设计 */
+        .contact-info-section {
+            margin-bottom: 4rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            color: #1e3c72;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .contact-title {
+            font-size: 1.5rem;
+            color: #1e3c72;
+            margin-bottom: 1rem;
+        }
+
+        .contact-details {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .contact-item {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .contact-label {
+            font-weight: 600;
+            color: #1e3c72;
+        }
+
+        /* 联系表单区域 - 现代化设计 */
+        .contact-form-section {
+            margin-bottom: 4rem;
+        }
+
+        .form-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #1e3c72;
+            margin-bottom: 2rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #1e3c72;
+            font-weight: 600;
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-width: 200px;
+            justify-content: center;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        /* 地图区域 */
+        .map-section {
+            margin-bottom: 4rem;
+        }
+
+        .map-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .map-placeholder {
+            height: 400px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: #666;
+            border: 2px dashed #dee2e6;
+        }
+
+        .map-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #1e3c72;
+        }
+
+        .map-text {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .map-address {
+            font-size: 1.1rem;
+            color: #1e3c72;
+            font-weight: 600;
+        }
+
+        /* 在线客服悬浮按钮 */
+        .floating-chat {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .floating-chat:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        /* 页脚保持一致 */
+        .footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #1e3c72;
+                flex-direction: column;
+                padding: 1rem 0;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .contact-grid,
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .floating-chat {
+                bottom: 1rem;
+                right: 1rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+
+        /* 动画效果 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- 与首页一致的导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-shipping-fast"></i>
+                国际物流之旅
+            </a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="services.html">服务介绍</a></li>
+                <li><a href="tracking.html">货物追踪</a></li>
+                <li><a href="about.html">关于我们</a></li>
+                <li><a href="contact.html" class="active">联系我们</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 页面头部 - 与首页风格一致 -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <h1 class="page-title">联系我们</h1>
+            <p class="page-subtitle">24小时为您服务，随时为您提供专业的物流咨询</p>
+        </div>
+    </section>
+
+    <!-- 主要内容区域 -->
+    <main class="main-content">
+        <!-- 联系信息区域 -->
+        <section class="contact-info-section">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-card animate-on-scroll">
+                        <i class="fas fa-phone contact-icon"></i>
+                        <h3 class="contact-title">电话咨询</h3>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <span class="contact-label">客服热线：</span>
+                                <span>400-888-9999</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">国际业务：</span>
+                                <span>+86-21-6888-8888</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">应急电话：</span>
+                                <span>+86-138-0013-8000</span>
+                            </div>
+                            <p style="margin-top: 1rem; font-size: 0.9rem; color: #999;">
+                                服务时间：7×24小时全天候
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="contact-card animate-on-scroll">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        <h3 class="contact-title">邮件联系</h3>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <span class="contact-label">客服邮箱：</span>
+                                <span>service@global-logistics.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">业务咨询：</span>
+                                <span>business@global-logistics.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">投诉建议：</span>
+                                <span>feedback@global-logistics.com</span>
+                            </div>
+                            <p style="margin-top: 1rem; font-size: 0.9rem; color: #999;">
+                                我们会在24小时内回复您的邮件
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="contact-card animate-on-scroll">
+                        <i class="fas fa-map-marker-alt contact-icon"></i>
+                        <h3 class="contact-title">办公地址</h3>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <span class="contact-label">总部地址：</span>
+                                <span>中国上海自由贸易试验区物流园区</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">邮编：</span>
+                                <span>200131</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">分部：</span>
+                                <span>深圳、广州、宁波、青岛、天津</span>
+                            </div>
+                            <p style="margin-top: 1rem; font-size: 0.9rem; color: #999;">
+                                欢迎预约来访，我们将竭诚为您服务
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系表单区域 -->
+        <section class="contact-form-section">
+            <div class="container">
+                <div class="form-container animate-on-scroll">
+                    <h2 class="form-title">在线留言</h2>
+                    <form onsubmit="submitContactForm(event)">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label" for="name">姓名 *</label>
+                                <input type="text" id="name" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="phone">电话 *</label>
+                                <input type="tel" id="phone" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="email">邮箱 *</label>
+                                <input type="email" id="email" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="service">服务类型</label>
+                                <select id="service" class="form-select">
+                                    <option value="">请选择服务类型</option>
+                                    <option value="ocean">海运服务</option>
+                                    <option value="air">空运服务</option>
+                                    <option value="rail">铁路运输</option>
+                                    <option value="custom">定制服务</option>
+                                    <option value="other">其他咨询</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="message">留言内容 *</label>
+                            <textarea id="message" class="form-textarea" placeholder="请详细描述您的需求..." required></textarea>
+                        </div>
+                        <div style="text-align: center;">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i>
+                                发送留言
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- 地图区域 -->
+        <section class="map-section">
+            <div class="container">
+                <div class="map-container animate-on-scroll">
+                    <h2 class="section-title" style="text-align: center; margin-bottom: 2rem; color: #1e3c72;">
+                        我们的位置
+                    </h2>
+                    <div class="map-placeholder">
+                        <i class="fas fa-map-marked-alt map-icon"></i>
+                        <div class="map-text">总部位置地图</div>
+                        <div class="map-address">
+                            中国上海自由贸易试验区物流园区<br>
+                            详细地址：上海市浦东新区外高桥保税区<br>
+                            联系电话：400-888-9999
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 在线客服悬浮按钮 -->
+    <div class="floating-chat" onclick="openChat()">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <!-- 与首页一致的页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 国际物流之旅. 保留所有权利 | 专业物流服务，连接全球市场</p>
+            <p>
+                <i class="fas fa-phone"></i> 400-888-9999 | 
+                <i class="fas fa-envelope"></i> service@global-logistics.com |
+                <i class="fas fa-map-marker-alt"></i> 中国上海自贸区物流园区
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // 移动端菜单切换
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // 联系表单提交
+        function submitContactForm(event) {
+            event.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                service: document.getElementById('service').value,
+                message: document.getElementById('message').value
+            };
+            
+            // 显示加载状态
+            const submitBtn = event.target.querySelector('.btn-primary');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 发送中...';
+            submitBtn.disabled = true;
+            
+            // 模拟API调用
+            setTimeout(() => {
+                // 恢复按钮状态
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                
+                // 显示成功消息
+                alert('留言发送成功！\n\n我们会在24小时内与您联系。\n\n感谢您选择国际物流之旅！');
+                
+                // 重置表单
+                event.target.reset();
+            }, 2000);
+        }
+
+        // 打开在线客服
+        function openChat() {
+            alert('在线客服功能即将上线！\n\n您可以通过以下方式联系我们：\n\n📞 客服热线：400-888-9999\n📧 邮箱：service@global-logistics.com\n\n服务时间：7×24小时全天候');
+        }
+
+        // 滚动动画
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('animated');
+                }
+            });
+        }
+
+        // 页面加载完成后执行
+        window.addEventListener('load', () => {
+            animateOnScroll();
+            window.addEventListener('scroll', animateOnScroll);
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(30, 60, 114, 0.95)';
+                navbar.style.backdropFilter = 'blur(10px)';
+            } else {
+                navbar.style.background = 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)';
+                navbar.style.backdropFilter = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
