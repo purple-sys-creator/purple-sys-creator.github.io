@@ -140,5 +140,42 @@
         window.addEventListener('load', animateOnScroll);
         window.addEventListener('scroll', animateOnScroll);
     </script>
+  <!-- 踩一踩按钮 -->
+<section style="text-align:center;padding:2rem 0;background:#f5f0f7;">
+  <button id="stepBtn" style="padding:.6rem 1.2rem;background:#c8a2c8;color:#fff;border:none;border-radius:30px;font-size:.9rem;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:transform .2s;">
+    踩一踩 👣
+  </button>
+</section>
+
+<script>
+/* 踩一踩脚印飘动 */
+document.getElementById('stepBtn').addEventListener('click',function(){
+  for(let i=0;i<6;i++){
+    createFootprint();
+  }
+});
+
+function createFootprint(){
+  const ft=document.createElement('div');
+  ft.innerHTML='👣';
+  ft.style.position='fixed';
+  ft.style.bottom='-50px';
+  ft.style.left=Math.random()*window.innerWidth+'px';
+  ft.style.fontSize='20px';
+  ft.style.opacity='0.8';
+  ft.style.pointerEvents='none';
+  ft.style.zIndex='9999';
+  ft.style.transition='all 2.5s ease-out';
+  document.body.appendChild(ft);
+
+  setTimeout(()=>{
+    ft.style.bottom='120vh';
+    ft.style.opacity='0';
+    ft.style.transform='rotate('+ (Math.random()*360) +'deg) scale(0.6)';
+  },10);
+
+  setTimeout(()=>ft.remove(),2500);
+}
+</script>
 </body>
 </html>
