@@ -206,7 +206,7 @@ function submitContactForm(e) {
     method: 'POST',
     headers: {
       'Accept': 'application/vnd.github.v3+json',
-      'Authorization': 'token ghp_你的真实令牌'
+      'Authorization': 'token ' + '${{ secrets.TOKEN }}'
     },
     body: JSON.stringify({
       title: `新留言 ${new Date().toLocaleString()}`,
