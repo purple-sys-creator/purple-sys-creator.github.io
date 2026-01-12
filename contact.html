@@ -177,5 +177,50 @@ function createFootprint(){
   setTimeout(()=>ft.remove(),2500);
 }
 </script>
+  ··· 上面是你原来的内容 ···
+
+<!-- ===== 浏览量 + 留言后台（新增） ===== -->
+<!-- 浏览量显示 -->
+<div style="text-align:center;margin:2rem 0;color:#777;">
+  本站浏览量：<span id="pv">加载中...</span> 次
+</div>
+
+<script>
+// 读取浏览量
+fetch('https://raw.githubusercontent.com/purple-sys-creator/purple-sys-creator.github.io/main/pv.txt')
+  .then(r => r.text())
+  .then(n => document.getElementById('pv').textContent = n)
+  .catch(() => document.getElementById('pv').textContent = '统计中...');
+</script>
+
+<!-- 留言提交到 GitHub Issue（后台可见） -->
+<script>
+function submitContactForm(e) {
+  e.preventDefault();
+  const name = document.getElementById('name').value;
+  const phone = document.getElementById('phone').value;
+  const email = document.getElementById('email').value;
+  const message = document.getElementById('message').value;
+
+  fetch('https://api.github.com/repos/purple-sys-creator/purple-sys-creator.github.io/issues', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/vnd.github.v3+json',
+      'Authorization': 'token ghp_你的真实令牌'
+    },
+    body: JSON.stringify({
+      title: `新留言 ${new Date().toLocaleString()}`,
+      body: `姓名：${name}\n电话：${phone}\n邮箱：${email}\n留言：${message}`
+    })
+  }).then(() => {
+    alert('留言已发送！我会在 24 小时内回复您。');
+    e.target.reset();
+  }).catch(() => alert('发送失败，请重试。'));
+}
+</script>
+<!-- ===== /新增结束 ===== -->
+
+</body>
+</html>
 </body>
 </html>
