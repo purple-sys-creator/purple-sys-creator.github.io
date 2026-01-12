@@ -1,0 +1,23 @@
+name: Stats & Comments
+on:
+  page_build:
+  issues:
+    types: [opened, edited]
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 浏览量 + 留言统计
+        uses: actions/github-script@v6
+        with:
+          script: |
+            // 浏览量统计（GitHub API 自动累加）
+            const fs = require('fs');
+            let pv = fs.existsSync('pv.txt') ? parseInt(fs.readFileSync('pv.txt', 'utf8')) : 0;
+            pv += 1;
+            fs.writeFileSync('pv.txt', pv.toString());
+            core.setOutput('pv', pv);
+
+            // 输出到日志（你在 Actions 里能看到）
+            core.info(`当前浏览量：${pv}`);
