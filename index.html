@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>国际物流之旅 - 全球物流解决方案</title>
+    <title>国际物流之旅 - 个人物流服务</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* 全局样式重置 */
         * {
             margin: 0;
             padding: 0;
@@ -17,19 +16,18 @@
             font-family: 'Segoe UI', 'Microsoft YaHei', Arial, sans-serif;
             line-height: 1.6;
             color: #333;
-            overflow-x: hidden;
+            background: #ffffff;
         }
 
-        /* 导航栏样式 */
+        /* 简洁导航 - 参考骏安风格 */
         .navbar {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background: #2c3e50;
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .nav-container {
@@ -43,143 +41,85 @@
 
         .logo {
             color: white;
-            font-size: 1.8rem;
-            font-weight: bold;
+            font-size: 1.5rem;
+            font-weight: 600;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .nav-menu a {
             color: white;
             text-decoration: none;
             padding: 0.5rem 1rem;
-            border-radius: 25px;
-            transition: all 0.3s ease;
+            transition: color 0.3s ease;
             font-weight: 500;
         }
 
         .nav-menu a:hover,
         .nav-menu a.active {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-2px);
-        }
-
-        /* 移动端菜单按钮 */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
+            color: #3498db;
         }
 
         /* 主要内容区域 */
         .main-content {
-            margin-top: 80px;
+            margin-top: 60px;
         }
 
-        /* 英雄区域 */
+        /* 简洁头部区域 - 参考骏安实用风格 */
         .hero-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
             color: white;
-            padding: 6rem 0 4rem;
+            padding: 4rem 0;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            animation: float 20s infinite linear;
-        }
-
-        @keyframes float {
-            0% { transform: translateX(-100px); }
-            100% { transform: translateX(100px); }
         }
 
         .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 0 2rem;
         }
 
         .hero-title {
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
+            font-weight: 600;
         }
 
         .hero-subtitle {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             margin-bottom: 2rem;
             opacity: 0.9;
-            animation: fadeInUp 1s ease 0.2s both;
+            line-height: 1.8;
         }
 
-        .hero-buttons {
+        .contact-info {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .contact-item {
             display: flex;
-            gap: 1rem;
-            justify-content: center;
-            animation: fadeInUp 1s ease 0.4s both;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
         }
 
-        .btn-primary {
-            background: white;
-            color: #1e3c72;
+        .contact-item:last-child {
+            margin-bottom: 0;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn-secondary:hover {
-            background: white;
-            color: #1e3c72;
-        }
-
-        /* 服务预览区域 */
-        .services-preview {
-            padding: 5rem 0;
+        /* 服务区域 - 简洁明了 */
+        .services-section {
+            padding: 4rem 0;
             background: #f8f9fa;
         }
 
@@ -191,243 +131,161 @@
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
-            color: #1e3c72;
+            font-size: 2rem;
+            color: #2c3e50;
             margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 2px;
+            font-weight: 600;
         }
 
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
         }
 
         .service-card {
             background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
         }
 
         .service-icon {
-            font-size: 3rem;
-            color: #1e3c72;
-            margin-bottom: 1.5rem;
-            display: block;
+            font-size: 2rem;
+            color: #3498db;
+            width: 50px;
+            text-align: center;
         }
 
         .service-title {
-            font-size: 1.5rem;
-            color: #1e3c72;
-            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            color: #2c3e50;
+            font-weight: 600;
         }
 
         .service-description {
             color: #666;
-            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
         }
 
-        .service-price {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            font-weight: 600;
-            display: inline-block;
+        .service-features {
+            list-style: none;
         }
 
-        /* 特色优势区域 */
-        .features-section {
-            padding: 5rem 0;
+        .service-features li {
+            padding: 0.3rem 0;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .service-features li::before {
+            content: '▸';
+            color: #3498db;
+            margin-right: 0.5rem;
+        }
+
+        /* 优势区域 - 简洁数据展示 */
+        .advantages-section {
+            padding: 4rem 0;
             background: white;
         }
 
-        .features-grid {
+        .advantages-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
         }
 
-        .feature-item {
+        .advantage-card {
             text-align: center;
             padding: 2rem;
-            border-radius: 15px;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            transition: transform 0.3s ease;
         }
 
-        .feature-item:nth-child(2) {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        }
-
-        .feature-item:nth-child(3) {
-            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-        }
-
-        .feature-item:nth-child(4) {
-            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-        }
-
-        .feature-item:hover {
-            transform: scale(1.05);
-        }
-
-        .feature-icon {
+        .advantage-icon {
             font-size: 3rem;
+            color: #3498db;
             margin-bottom: 1rem;
         }
 
-        .feature-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* 统计数据区域 */
-        .stats-section {
-            padding: 5rem 0;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            text-align: center;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            padding: 2rem;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: bold;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        /* 客户评价区域 */
-        .testimonials-section {
-            padding: 5rem 0;
-            background: #f8f9fa;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .testimonial-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            position: relative;
-        }
-
-        .testimonial-card::before {
-            content: '"';
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            font-size: 4rem;
-            color: #1e3c72;
-            opacity: 0.3;
-        }
-
-        .testimonial-text {
-            color: #666;
-            font-style: italic;
-            margin-bottom: 1.5rem;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-        }
-
-        /* CTA区域 */
-        .cta-section {
-            padding: 4rem 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-        }
-
-        .cta-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .cta-content p {
+        .advantage-title {
             font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
         }
 
-        /* 页脚 */
-        .footer {
-            background: #1e3c72;
+        .advantage-description {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* 联系区域 - 突出个人信息 */
+        .contact-section {
+            padding: 4rem 0;
+            background: #2c3e50;
             color: white;
             text-align: center;
-            padding: 3rem 0;
+        }
+
+        .contact-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-details {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-label {
+            font-weight: 600;
+        }
+
+        .btn-contact {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+            font-weight: 500;
+        }
+
+        .btn-contact:hover {
+            background: #2980b9;
+        }
+
+        /* 页脚 - 简洁风格 */
+        .footer {
+            background: #34495e;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
         }
 
         .footer-content {
@@ -436,25 +294,28 @@
             padding: 0 2rem;
         }
 
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-menu {
+                gap: 1rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .contact-details {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .services-grid,
+            .advantages-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: #667eea;
-        }
-
-        /* 动画效果 */
+        /* 动画效果 - 简洁 */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -476,277 +337,233 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .nav-menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: #1e3c72;
-                flex-direction: column;
-                padding: 1rem 0;
-            }
-
-            .nav-menu.active {
-                display: flex;
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .services-grid,
-            .features-grid,
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 2rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .stat-number {
-                font-size: 2rem;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- 导航栏 -->
+    <!-- 简洁导航 -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">
                 <i class="fas fa-shipping-fast"></i>
                 国际物流之旅
             </a>
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
-                <i class="fas fa-bars"></i>
-            </button>
-            <ul class="nav-menu" id="navMenu">
+            <ul class="nav-menu">
                 <li><a href="index.html" class="active">首页</a></li>
                 <li><a href="services.html">服务介绍</a></li>
                 <li><a href="tracking.html">货物追踪</a></li>
-                <li><a href="about.html">关于我们</a></li>
-                <li><a href="contact.html">联系我们</a></li>
+                <li><a href="about.html">关于我</a></li>
+                <li><a href="contact.html">联系方式</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- 主要内容 -->
     <main class="main-content">
-        <!-- 英雄区域 -->
+        <!-- 简洁头部 -->
         <section class="hero-section">
             <div class="hero-content">
-                <h1 class="hero-title animate-on-scroll">连接世界，物流无界</h1>
-                <p class="hero-subtitle animate-on-scroll">
-                    专业的国际物流服务，全球网络覆盖，为您提供高效、安全、可靠的物流解决方案
+                <h1 class="hero-title">国际物流之旅</h1>
+                <p class="hero-subtitle">
+                    专业从事中国发往俄罗斯、欧洲、中亚五国、蒙古国的多式联运运输服务<br>
+                    包括海运、陆运、铁路运输、空运等全程物流解决方案
                 </p>
-                <div class="hero-buttons animate-on-scroll">
-                    <a href="services.html" class="btn btn-primary">
-                        <i class="fas fa-rocket"></i>
-                        立即询价
-                    </a>
-                    <a href="tracking.html" class="btn btn-secondary">
-                        <i class="fas fa-search"></i>
-                        货物追踪
-                    </a>
+                <div class="contact-info animate-on-scroll">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+86 18222510291</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>jiugu92@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>7×24小时服务</span>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- 服务预览区域 -->
-        <section class="services-preview">
+        <!-- 核心服务 - 简洁明了 -->
+        <section class="services-section">
             <div class="container">
-                <h2 class="section-title animate-on-scroll">核心服务</h2>
+                <h2 class="section-title">核心服务</h2>
                 <div class="services-grid">
                     <div class="service-card animate-on-scroll">
-                        <i class="fas fa-ship service-icon"></i>
-                        <h3 class="service-title">海运服务</h3>
-                        <p class="service-description">全球主要港口整箱拼箱运输，与MSK、COSCO等船公司深度合作</p>
-                        <div class="service-price">起步价 ¥899/20GP</div>
+                        <div class="service-header">
+                            <i class="fas fa-ship service-icon"></i>
+                            <h3 class="service-title">海运服务</h3>
+                        </div>
+                        <p class="service-description">
+                            中国主要港口至俄罗斯、欧洲、中亚的集装箱运输，提供整箱和拼箱服务
+                        </p>
+                        <ul class="service-features">
+                            <li>天津、上海、青岛等主要港口</li>
+                            <li>整箱(FCL)和拼箱(LCL)运输</li>
+                            <li>集装箱租赁服务</li>
+                            <li>港口到港口全程跟踪</li>
+                        </ul>
                     </div>
+
                     <div class="service-card animate-on-scroll">
-                        <i class="fas fa-plane service-icon"></i>
-                        <h3 class="service-title">空运服务</h3>
-                        <p class="service-description">覆盖全球200+城市，3-5个工作日快速送达，门到门服务</p>
-                        <div class="service-price">起步价 ¥28/公斤</div>
+                        <div class="service-header">
+                            <i class="fas fa-train service-icon"></i>
+                            <h3 class="service-title">铁路运输</h3>
+                        </div>
+                        <p class="service-description">
+                            中欧班列及中亚铁路运输，稳定时效，成本优化，门到门服务
+                        </p>
+                        <ul class="service-features">
+                            <li>中欧班列(中国-欧洲)</li>
+                            <li>中亚班列(中国-中亚五国)</li>
+                            <li>中俄班列(中国-俄罗斯)</li>
+                            <li>14-18天稳定时效</li>
+                        </ul>
                     </div>
+
                     <div class="service-card animate-on-scroll">
-                        <i class="fas fa-train service-icon"></i>
-                        <h3 class="service-title">中欧班列</h3>
-                        <p class="service-description">14-18天稳定时效，连接中国与欧洲主要城市，成本优化</p>
-                        <div class="service-price">起步价 $2800/40HQ</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 特色优势区域 -->
-        <section class="features-section">
-            <div class="container">
-                <h2 class="section-title animate-on-scroll">为什么选择我们</h2>
-                <div class="features-grid">
-                    <div class="feature-item animate-on-scroll">
-                        <i class="fas fa-clock feature-icon"></i>
-                        <h3 class="feature-title">时效保障</h3>
-                        <p>承诺时效，延误赔付</p>
-                    </div>
-                    <div class="feature-item animate-on-scroll">
-                        <i class="fas fa-shield-alt feature-icon"></i>
-                        <h3 class="feature-title">货物保险</h3>
-                        <p>全程保险，安全无忧</p>
-                    </div>
-                    <div class="feature-item animate-on-scroll">
-                        <i class="fas fa-headset feature-icon"></i>
-                        <h3 class="feature-title">24小时客服</h3>
-                        <p>全天候在线支持</p>
-                    </div>
-                    <div class="feature-item animate-on-scroll">
-                        <i class="fas fa-chart-line feature-icon"></i>
-                        <h3 class="feature-title">实时追踪</h3>
-                        <p>全程可视化监控</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 统计数据区域 -->
-        <section class="stats-section">
-            <div class="container">
-                <div class="stats-grid">
-                    <div class="stat-item animate-on-scroll">
-                        <span class="stat-number">500+</span>
-                        <div class="stat-label">全球合作港口</div>
-                    </div>
-                    <div class="stat-item animate-on-scroll">
-                        <span class="stat-number">10000+</span>
-                        <div class="stat-label">年服务客户</div>
-                    </div>
-                    <div class="stat-item animate-on-scroll">
-                        <span class="stat-number">99.8%</span>
-                        <div class="stat-label">准时到达率</div>
-                    </div>
-                    <div class="stat-item animate-on-scroll">
-                        <span class="stat-number">15年</span>
-                        <div class="stat-label">行业经验</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 客户评价区域 -->
-        <section class="testimonials-section">
-            <div class="container">
-                <h2 class="section-title animate-on-scroll">客户评价</h2>
-                <div class="testimonials-grid">
-                    <div class="testimonial-card animate-on-scroll">
-                        <p class="testimonial-text">
-                            与贵公司合作多年，服务专业、时效稳定，是我们值得信赖的物流合作伙伴。特别是中欧班列服务，为我们节省了大量成本。
-                        </p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">张</div>
-                            <div>
-                                <strong>张总经理</strong><br>
-                                <small>某制造公司</small>
-                            </div>
+                        <div class="service-header">
+                            <i class="fas fa-truck service-icon"></i>
+                            <h3 class="service-title">陆运服务</h3>
                         </div>
-                    </div>
-                    <div class="testimonial-card animate-on-scroll">
-                        <p class="testimonial-text">
-                            货物追踪系统非常便捷，随时可以了解货物状态。客服响应迅速，问题解决及时，让我们很放心。
+                        <p class="service-description">
+                            跨境公路运输，灵活便捷，适合各类货物运输需求
                         </p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">李</div>
-                            <div>
-                                <strong>李经理</strong><br>
-                                <small>某跨境电商</small>
-                            </div>
-                        </div>
+                        <ul class="service-features">
+                            <li>中蒙俄公路运输</li>
+                            <li>中国-中亚公路运输</li>
+                            <li>冷链运输服务</li>
+                            <li>大件货物运输</li>
+                        </ul>
                     </div>
-                    <div class="testimonial-card animate-on-scroll">
-                        <p class="testimonial-text">
-                            专业的清关服务帮我们解决了很多难题，各种复杂单证都能处理得很好，大大提高了我们的通关效率。
-                        </p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">王</div>
-                            <div>
-                                <strong>王总监</strong><br>
-                                <small>某进出口公司</small>
-                            </div>
+
+                    <div class="service-card animate-on-scroll">
+                        <div class="service-header">
+                            <i class="fas fa-plane service-icon"></i>
+                            <h3 class="service-title">空运服务</h3>
                         </div>
+                        <p class="service-description">
+                            快速空运服务，覆盖全球主要城市，时效保证
+                        </p>
+                        <ul class="service-features">
+                            <li>全球主要机场覆盖</li>
+                            <li>普货和特货运输</li>
+                            <li>门到门派送服务</li>
+                            <li>3-7天快速时效</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card animate-on-scroll">
+                        <div class="service-header">
+                            <i class="fas fa-warehouse service-icon"></i>
+                            <h3 class="service-title">保税仓储</h3>
+                        </div>
+                        <p class="service-description">
+                            提供保税仓储、货物集散、分拨配送等仓储服务
+                        </p>
+                        <ul class="service-features">
+                            <li>保税仓库服务</li>
+                            <li>货物分拣包装</li>
+                            <li>跨境电商仓储</li>
+                            <li>库存管理服务</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card animate-on-scroll">
+                        <div class="service-header">
+                            <i class="fas fa-file-invoice service-icon"></i>
+                            <h3 class="service-title">报关报检</h3>
+                        </div>
+                        <p class="service-description">
+                            专业报关报检服务，熟悉各国海关政策，确保货物顺利通关
+                        </p>
+                        <ul class="service-features">
+                            <li>进出口报关</li>
+                            <li>报检报验服务</li>
+                            <li>单证制作审核</li>
+                            <li>关税咨询</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- CTA区域 -->
-        <section class="cta-section">
+        <!-- 个人优势 - 简洁数据 -->
+        <section class="advantages-section">
             <div class="container">
-                <div class="cta-content animate-on-scroll">
-                    <h2>准备好开始您的物流之旅了吗？</h2>
-                    <p>立即联系我们，获取专业的物流解决方案和报价</p>
-                    <a href="contact.html" class="btn btn-primary">
+                <h2 class="section-title">服务优势</h2>
+                <div class="advantages-grid">
+                    <div class="advantage-card animate-on-scroll">
+                        <i class="fas fa-route advantage-icon"></i>
+                        <h3 class="advantage-title">多式联运</h3>
+                        <p class="advantage-description">
+                            海铁联运、海陆联运等多种组合，提供最优物流方案
+                        </p>
+                    </div>
+                    <div class="advantage-card animate-on-scroll">
+                        <i class="fas fa-clock advantage-icon"></i>
+                        <h3 class="advantage-title">时效稳定</h3>
+                        <p class="advantage-description">
+                            多年运输经验，稳定的运输时效，延误率低
+                        </p>
+                    </div>
+                    <div class="advantage-card animate-on-scroll">
+                        <i class="fas fa-shield-alt advantage-icon"></i>
+                        <h3 class="advantage-title">安全可靠</h3>
+                        <p class="advantage-description">
+                            全程货物跟踪，完善的保险服务，确保安全运输
+                        </p>
+                    </div>
+                    <div class="advantage-card animate-on-scroll">
+                        <i class="fas fa-handshake advantage-icon"></i>
+                        <h3 class="advantage-title">个性化服务</h3>
+                        <p class="advantage-description">
+                            根据客户需求定制运输方案，灵活应对各种需求
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系方式 - 突出个人信息 -->
+        <section class="contact-section">
+            <div class="container">
+                <h2 class="contact-title">联系方式</h2>
+                <div class="contact-details">
+                    <div class="contact-item">
                         <i class="fas fa-phone"></i>
-                        立即咨询
-                    </a>
+                        <span class="contact-label">电话：</span>
+                        <span>+86 18222510291</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span class="contact-label">邮箱：</span>
+                        <span>jiugu92@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span class="contact-label">服务时间：</span>
+                        <span>7×24小时</span>
+                    </div>
                 </div>
+                <a href="contact.html" class="btn-contact">
+                    <i class="fas fa-comments"></i>
+                    立即咨询
+                </a>
             </div>
         </section>
     </main>
 
-    <!-- 页脚 -->
+    <!-- 简洁页脚 -->
     <footer class="footer">
         <div class="footer-content">
-            <div class="footer-links">
-                <a href="index.html">首页</a>
-                <a href="services.html">服务介绍</a>
-                <a href="tracking.html">货物追踪</a>
-                <a href="about.html">关于我们</a>
-                <a href="contact.html">联系我们</a>
-            </div>
-            <p>&copy; 2025 国际物流之旅. 保留所有权利 | 专业物流服务，连接全球市场</p>
-            <p>
-                <i class="fas fa-phone"></i> 400-888-9999 | 
-                <i class="fas fa-envelope"></i> service@global-logistics.com |
-                <i class="fas fa-map-marker-alt"></i> 中国上海自贸区物流园区
-            </p>
+            <p>&copy; 2025 国际物流之旅 | 个人国际物流服务</p>
+            <p>电话：+86 18222510291 | 邮箱：jiugu92@gmail.com</p>
         </div>
     </footer>
 
     <script>
-        // 移动端菜单切换
-        function toggleMobileMenu() {
-            const navMenu = document.getElementById('navMenu');
-            navMenu.classList.toggle('active');
-        }
-
-        // 滚动动画
+        // 简单的滚动动画
         function animateOnScroll() {
             const elements = document.querySelectorAll('.animate-on-scroll');
             
@@ -760,83 +577,9 @@
             });
         }
 
-        // 数字动画
-        function animateNumbers() {
-            const numbers = document.querySelectorAll('.stat-number');
-            
-            numbers.forEach(number => {
-                const finalValue = number.textContent;
-                const numericValue = parseFloat(finalValue.replace(/[^0-9.]/g, ''));
-                let currentValue = 0;
-                const increment = numericValue / 50;
-                
-                const timer = setInterval(() => {
-                    currentValue += increment;
-                    if (currentValue >= numericValue) {
-                        currentValue = numericValue;
-                        clearInterval(timer);
-                    }
-                    
-                    if (finalValue.includes('%')) {
-                        number.textContent = currentValue.toFixed(1) + '%';
-                    } else if (finalValue.includes('+')) {
-                        number.textContent = Math.floor(currentValue) + '+';
-                    } else if (finalValue.includes('年')) {
-                        number.textContent = Math.floor(currentValue) + '年';
-                    } else {
-                        number.textContent = Math.floor(currentValue).toLocaleString() + '+';
-                    }
-                }, 30);
-            });
-        }
-
         // 页面加载完成后执行
-        window.addEventListener('load', () => {
-            animateOnScroll();
-            
-            // 监听滚动事件
-            window.addEventListener('scroll', animateOnScroll);
-            
-            // 数字动画
-            const statsSection = document.querySelector('.stats-section');
-            if (statsSection) {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            animateNumbers();
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                });
-                observer.observe(statsSection);
-            }
-        });
-
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // 导航栏滚动效果
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 100) {
-                navbar.style.background = 'rgba(30, 60, 114, 0.95)';
-                navbar.style.backdropFilter = 'blur(10px)';
-            } else {
-                navbar.style.background = 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)';
-                navbar.style.backdropFilter = 'none';
-            }
-        });
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
     </script>
 </body>
 </html>
