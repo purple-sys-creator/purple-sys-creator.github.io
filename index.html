@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>国际物流之旅 - 个人物流服务</title>
+    <title data-en="International Logistics Journey - Personal Logistics Service">国际物流之旅 - 个人物流服务</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* ===== 浅紫色主题 ===== */
+        :root{--primary:#c8a2c8;--primary-dark:#9c6ea6;--light:#f5f0f7;--dark:#2c2c54;}
         *{margin:0;padding:0;box-sizing:border-box;}
         body{font-family:'Segoe UI','Microsoft YaHei',Arial,sans-serif;line-height:1.6;color:#333;background:#fff;}
-        /* 浅紫色主题 */
-        :root{--primary:#c8a2c8;--primary-dark:#9c6ea6;--light:#f5f0f7;--dark:#2c2c54;}
         .navbar{background:var(--light);padding:1rem 0;position:fixed;width:100%;top:0;z-index:1000;box-shadow:0 2px 5px rgba(0,0,0,.1);}
         .nav-container{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:0 2rem;}
         .logo{color:var(--dark);font-size:1.5rem;font-weight:600;text-decoration:none;}
@@ -55,15 +55,26 @@
         @media (max-width:768px){.hero-title{font-size:2rem;}.contact-details{flex-direction:column;gap:1rem;}.services-grid,.advantages-grid{grid-template-columns:1fr;}}
         .animate-on-scroll{opacity:0;transform:translateY(30px);transition:all .6s ease;}
         .animate-on-scroll.animated{opacity:1;transform:translateY(0);}
+
+        /* ===== 双语切换器 ===== */
+        .lang-switch{position:fixed;top:12px;right:12px;z-index:9999;display:flex;gap:4px;padding:4px;background:rgba(255,255,255,.85);border-radius:20px;box-shadow:0 2px 8px rgba(120,80,200,.15);backdrop-filter:blur(4px);}
+        .lang-switch button{border:none;padding:6px 14px;border-radius:16px;font-size:13px;cursor:pointer;transition:.25s;color:#6b46c1;background:transparent;}
+        .lang-switch button.active{background:#6b46c1;color:#fff;}
     </style>
 </head>
 <body>
+    <!-- 双语切换按钮 -->
+    <div class="lang-switch">
+        <button id="btn-zh" onclick="setLang('zh')">中文</button>
+        <button id="btn-en" onclick="setLang('en')">English</button>
+    </div>
+
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html" class="logo"><i class="fas fa-shipping-fast"></i> 国际物流之旅</a>
+            <a href="index.html" class="logo"><i class="fas fa-shipping-fast"></i> <span data-en="International Logistics Journey">国际物流之旅</span></a>
             <ul class="nav-menu">
-                <li><a href="index.html" class="active">首页</a></li>
-                <li><a href="contact.html">联系方式</a></li>
+                <li><a href="index.html" class="active" data-en="Home">首页</a></li>
+                <li><a href="contact.html" data-en="Contact">联系方式</a></li>
             </ul>
         </div>
     </nav>
@@ -71,48 +82,76 @@
     <main class="main-content">
         <section class="hero-section">
             <div class="hero-content">
-                <h1 class="hero-title animate-on-scroll">国际物流之旅</h1>
-                <p class="hero-subtitle animate-on-scroll">
+                <h1 class="hero-title animate-on-scroll" data-en="International Logistics Journey">国际物流之旅</h1>
+                <p class="hero-subtitle animate-on-scroll" data-en="Specializing in China-global transport services<br>Ocean, rail, road, air and full logistics solutions">
                     专业从事中国往返全球的运输服务<br>
                     包括海运、陆运、铁路运输、空运等全程物流解决方案
                 </p>
-                
             </div>
         </section>
 
         <section class="services-section">
             <div class="container">
-                <h2 class="section-title animate-on-scroll">核心服务</h2>
+                <h2 class="section-title animate-on-scroll" data-en="Core Services">核心服务</h2>
                 <div class="services-grid">
                     <div class="service-card animate-on-scroll">
-                        <div class="service-header"><i class="fas fa-ship service-icon"></i><h3 class="service-title">海运服务</h3></div>
-                        <p class="service-description">中国主要港口至美洲、欧洲、非洲，亚洲，澳洲的集装箱运输，提供整箱和拼箱服务</p>
-                        <ul class="service-features"><li>天津、大连、上海、青岛、宁波、厦门、广州等主要港口</li><li>整箱(FCL)和拼箱(LCL)运输</li><li>集装箱租赁服务</li><li>港口到港口全程跟踪</li></ul>
+                        <div class="service-header"><i class="fas fa-ship service-icon"></i><h3 class="service-title" data-en="Sea Freight">海运服务</h3></div>
+                        <p class="service-description" data-en="Container shipping from major Chinese ports to Americas, Europe, Africa, Asia and Oceania, offering FCL and LCL services">中国主要港口至美洲、欧洲、非洲，亚洲，澳洲的集装箱运输，提供整箱和拼箱服务</p>
+                        <ul class="service-features">
+                            <li data-en="Major ports: Tianjin, Dalian, Shanghai, Qingdao, Ningbo, Xiamen, Guangzhou">天津、大连、上海、青岛、宁波、厦门、广州等主要港口</li>
+                            <li data-en="FCL and LCL transport">整箱(FCL)和拼箱(LCL)运输</li>
+                            <li data-en="Container leasing service">集装箱租赁服务</li>
+                            <li data-en="Port-to-port full tracking">港口到港口全程跟踪</li>
+                        </ul>
                     </div>
                     <div class="service-card animate-on-scroll">
-                        <div class="service-header"><i class="fas fa-train service-icon"></i><h3 class="service-title">铁路运输</h3></div>
-                        <p class="service-description">中欧班列及中亚铁路运输，稳定时效，成本优化，门到门服务</p>
-                        <ul class="service-features"><li>中欧班列(中国-欧洲)</li><li>中亚班列(中国-中亚五国)</li><li>中俄班列(中国-俄罗斯)</li></ul>
+                        <div class="service-header"><i class="fas fa-train service-icon"></i><h3 class="service-title" data-en="Railway Transport">铁路运输</h3></div>
+                        <p class="service-description" data-en="China-Europe and Central Asia railway transport, stable transit time, cost-optimized door-to-door service">中欧班列及中亚铁路运输，稳定时效，成本优化，门到门服务</p>
+                        <ul class="service-features">
+                            <li data-en="China-Europe Railway (China-Europe)">中欧班列(中国-欧洲)</li>
+                            <li data-en="Central Asia Railway (China-Central Asia)">中亚班列(中国-中亚五国)</li>
+                            <li data-en="China-Russia Railway (China-Russia)">中俄班列(中国-俄罗斯)</li>
+                        </ul>
                     </div>
                     <div class="service-card animate-on-scroll">
-                        <div class="service-header"><i class="fas fa-truck service-icon"></i><h3 class="service-title">陆运服务</h3></div>
-                        <p class="service-description">跨境公路运输，灵活便捷，适合各类货物运输需求</p>
-                        <ul class="service-features"><li>中蒙俄公路运输</li><li>中国-中亚公路运输</li><li>冷链运输服务</li><li>大件货物运输</li></ul>
+                        <div class="service-header"><i class="fas fa-truck service-icon"></i><h3 class="service-title" data-en="Road Transport">陆运服务</h3></div>
+                        <p class="service-description" data-en="Cross-border road transport, flexible and convenient for all kinds of cargo">跨境公路运输，灵活便捷，适合各类货物运输需求</p>
+                        <ul class="service-features">
+                            <li data-en="China-Mongolia-Russia road transport">中蒙俄公路运输</li>
+                            <li data-en="China-Central Asia road transport">中国-中亚公路运输</li>
+                            <li data-en="Cold-chain transport service">冷链运输服务</li>
+                            <li data-en="Heavy and oversized cargo transport">大件货物运输</li>
+                        </ul>
                     </div>
                     <div class="service-card animate-on-scroll">
-                        <div class="service-header"><i class="fas fa-plane service-icon"></i><h3 class="service-title">空运服务</h3></div>
-                        <p class="service-description">快速空运服务，覆盖全球主要城市，时效保证</p>
-                        <ul class="service-features"><li>全球主要机场覆盖</li><li>普货和特货运输</li><li>门到门派送服务</li><li>3-7天快速时效</li></ul>
+                        <div class="service-header"><i class="fas fa-plane service-icon"></i><h3 class="service-title" data-en="Air Freight">空运服务</h3></div>
+                        <p class="service-description" data-en="Fast air freight service covering major global cities with guaranteed transit time">快速空运服务，覆盖全球主要城市，时效保证</p>
+                        <ul class="service-features">
+                            <li data-en="Global major airports coverage">全球主要机场覆盖</li>
+                            <li data-en="General and special cargo transport">普货和特货运输</li>
+                            <li data-en="Door-to-door delivery service">门到门派送服务</li>
+                            <li data-en="3-7 days fast transit time">3-7天快速时效</li>
+                        </ul>
                     </div>
                     <div class="service-card animate-on-scroll">
-                        <div class="service-header"><i class="fas fa-warehouse service-icon"></i><h3 class="service-title">保税仓储</h3></div>
-                        <p class="service-description">提供保税仓储、货物集散、分拨配送等仓储服务</p>
-                        <ul class="service-features"><li>保税仓库服务</li><li>货物分拣包装</li><li>跨境电商仓储</li><li>库存管理服务</li></ul>
+                        <div class="service-header"><i class="fas fa-warehouse service-icon"></i><h3 class="service-title" data-en="Bonded Warehousing">保税仓储</h3></div>
+                        <p class="service-description" data-en="Provide bonded warehousing, distribution and delivery services">提供保税仓储、货物集散、分拨配送等仓储服务</p>
+                        <ul class="service-features">
+                            <li data-en="Bonded warehouse service">保税仓库服务</li>
+                            <li data-en="Cargo sorting and packaging">货物分拣包装</li>
+                            <li data-en="Cross-border e-commerce warehousing">跨境电商仓储</li>
+                            <li data-en="Inventory management service">库存管理服务</li>
+                        </ul>
                     </div>
                     <div class="service-card animate-on-scroll">
-                        <div class="service-header"><i class="fas fa-file-invoice service-icon"></i><h3 class="service-title">报关报检</h3></div>
-                        <p class="service-description">专业报关报检服务，熟悉各国海关政策，确保货物顺利通关</p>
-                        <ul class="service-features"><li>进出口报关</li><li>报检报验服务</li><li>单证制作审核</li><li>关税咨询</li></ul>
+                        <div class="service-header"><i class="fas fa-file-invoice service-icon"></i><h3 class="service-title" data-en="Customs Clearance">报关报检</h3></div>
+                        <p class="service-description" data-en="Professional customs clearance services, familiar with customs policies of various countries to ensure smooth customs clearance">专业报关报检服务，熟悉各国海关政策，确保货物顺利通关</p>
+                        <ul class="service-features">
+                            <li data-en="Import and export customs clearance">进出口报关</li>
+                            <li data-en="Inspection and quarantine services">报检报验服务</li>
+                            <li data-en="Document preparation and review">单证制作审核</li>
+                            <li data-en="Tariff consultation">关税咨询</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -120,33 +159,61 @@
 
         <section class="advantages-section">
             <div class="container">
-                <h2 class="section-title animate-on-scroll">服务优势</h2>
+                <h2 class="section-title animate-on-scroll" data-en="Service Advantages">服务优势</h2>
                 <div class="advantages-grid">
-                    <div class="advantage-card animate-on-scroll"><i class="fas fa-route advantage-icon"></i><h3 class="advantage-title">多式联运</h3><p class="advantage-description">海铁联运、海陆联运等多种组合，提供最优物流方案</p></div>
-                    <div class="advantage-card animate-on-scroll"><i class="fas fa-clock advantage-icon"></i><h3 class="advantage-title">时效稳定</h3><p class="advantage-description">多年运输经验，稳定的运输时效，延误率低</p></div>
-                    <div class="advantage-card animate-on-scroll"><i class="fas fa-shield-alt advantage-icon"></i><h3 class="advantage-title">安全可靠</h3><p class="advantage-description">全程货物跟踪，完善的保险服务，确保安全运输</p></div>
-                    <div class="advantage-card animate-on-scroll"><i class="fas fa-handshake advantage-icon"></i><h3 class="advantage-title">个性化服务</h3><p class="advantage-description">根据客户需求定制运输方案，灵活应对各种需求</p></div>
+                    <div class="advantage-card animate-on-scroll">
+                        <i class="fas fa-route advantage-icon"></i>
+                        <h3 class="advantage-title" data-en="Multimodal Transport">多式联运</h3>
+                        <p class="advantage-description" data-en="Sea-rail, sea-road and other combinations to provide optimal logistics solutions">海铁联运、海陆联运等多种组合，提供最优物流方案</p>
+                    </div>
+                    <div class="advantage-card animate-on-scroll">
+                        <i class="fas fa-clock advantage-icon"></i>
+                        <h3 class="advantage-title" data-en="Stable Transit Time">时效稳定</h3>
+                        <p class="advantage-description" data-en="Years of transport experience, stable transit time and low delay rate">多年运输经验，稳定的运输时效，延误率低</p>
+                    </div>
+                    <div class="advantage-card animate-on-scroll">
+                        <i class="fas fa-shield-alt advantage-icon"></i>
+                        <h3 class="advantage-title" data-en="Safe & Reliable">安全可靠</h3>
+                        <p class="advantage-description" data-en="Full cargo tracking, comprehensive insurance services to ensure safe transport">全程货物跟踪，完善的保险服务，确保安全运输</p>
+                    </div>
+                    <div class="advantage-card animate-on-scroll">
+                        <i class="fas fa-handshake advantage-icon"></i>
+                        <h3 class="advantage-title" data-en="Personalized Service">个性化服务</h3>
+                        <p class="advantage-description" data-en="Customize transport solutions according to customer needs, flexible response to various needs">根据客户需求定制运输方案，灵活应对各种需求</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section class="contact-section">
             <div class="container">
-                <h2 class="contact-title">联系方式</h2>
+                <h2 class="contact-title" data-en="Contact Us">联系方式</h2>
                 <div class="contact-details">
-                    <div class="contact-item"><i class="fas fa-phone"></i><span class="contact-label">电话：</span><span>+86 18222510291</span></div>
-                    <div class="contact-item"><i class="fas fa-envelope"></i><span class="contact-label">邮箱：</span><span>jiugu92@gmail.com</span></div>
-                    <div class="contact-item"><i class="fas fa-clock"></i><span class="contact-label">服务时间：</span><span>7×24小时</span></div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span class="contact-label" data-en="Phone:">电话：</span>
+                        <span>+86 18222510291</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span class="contact-label" data-en="Email:">邮箱：</span>
+                        <span>jiugu92@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span class="contact-label" data-en="Service Time:">服务时间：</span>
+                        <span data-en="7×24 hours">7×24小时</span>
+                    </div>
                 </div>
-                <a href="contact.html" class="btn-contact"><i class="fas fa-comments"></i> 立即咨询</a>
+                <a href="contact.html" class="btn-contact" data-en="Consult Now">立即咨询</a>
             </div>
         </section>
     </main>
 
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2025 国际物流之旅 | 个人国际物流服务</p>
-            <p>电话：+86 18222510291 | 邮箱：jiugu92@gmail.com</p>
+            <p data-en="© 2025 International Logistics Journey | Personal International Logistics Service">&copy; 2025 国际物流之旅 | 个人国际物流服务</p>
+            <p data-en="Phone: +86 18222510291 | Email: jiugu92@gmail.com">电话：+86 18222510291 | 邮箱：jiugu92@gmail.com</p>
         </div>
     </footer>
 
@@ -163,6 +230,27 @@
         }
         window.addEventListener('load', animateOnScroll);
         window.addEventListener('scroll', animateOnScroll);
+
+        /* ===== 零依赖双语切换核心 ===== */
+        (function(){
+            const key='siteLang';
+            function applyLang(lang){
+                document.documentElement.lang=lang;
+                document.querySelectorAll('[data-en]').forEach(el=>{
+                    if(lang==='en'){
+                        if(!el.dataset.zh) el.dataset.zh=el.textContent;
+                        el.textContent=el.dataset.en;
+                    }else{
+                        el.textContent=el.dataset.zh||el.textContent;
+                    }
+                });
+                document.querySelectorAll('.lang-switch button').forEach(btn=>btn.classList.remove('active'));
+                document.getElementById('btn-'+lang).classList.add('active');
+                localStorage.setItem(key,lang);
+            }
+            window.setLang=applyLang;
+            applyLang(localStorage.getItem(key)||'zh');
+        })();
     </script>
 </body>
 </html>
