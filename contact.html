@@ -6,6 +6,7 @@
 <title data-en="Contact Us - International Logistics Journey">联系方式 - 国际物流之旅</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <style>
+/* ===== 浅紫色主题 ===== */
 :root{--primary:#c8a2c8;--primary-dark:#9c6ea6;--light:#f5f0f7;--dark:#2c2c54;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Segoe UI','Microsoft YaHei',Arial,sans-serif;line-height:1.6;color:#333;background:var(--light);}
@@ -44,10 +45,14 @@ a{color:var(--primary-dark);text-decoration:none;}
 .lang-switch{position:fixed;top:12px;right:12px;z-index:9999;display:flex;gap:4px;padding:4px;background:rgba(255,255,255,.85);border-radius:20px;box-shadow:0 2px 8px rgba(120,80,200,.15);backdrop-filter:blur(4px);}
 .lang-switch button{border:none;padding:6px 14px;border-radius:16px;font-size:13px;cursor:pointer;transition:.25s;color:#6b46c1;background:transparent;}
 .lang-switch button.active{background:#6b46c1;color:#fff;}
+
+/* 踩一踩按钮 */
+#stepBtn{padding:.6rem 1.2rem;background:var(--primary);color:#fff;border:none;border-radius:30px;font-size:.9rem;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:transform .2s;}
+#stepBtn:hover{transform:scale(1.05);}
 </style>
 </head>
 <body>
-<!-- 切换按钮 -->
+<!-- 双语切换按钮 -->
 <div class="lang-switch">
   <button id="btn-zh" onclick="setLang('zh')">中文</button>
   <button id="btn-en" onclick="setLang('en')">English</button>
@@ -112,6 +117,14 @@ a{color:var(--primary-dark);text-decoration:none;}
       </div>
     </div>
   </section>
+
+  <!-- 踩一踩 + 浏览量 + 留言后台 -->
+  <section style="text-align:center;padding:2rem 0;background:var(--light);">
+    <button id="stepBtn"><span data-en="Step on it 👣">踩一踩 👣</span></button>
+    <div style="margin-top:1rem;color:#777;">
+      <span data-en="Page views: ">本站浏览量：</span><span id="pv">加载中...</span><span data-en=" times"> 次</span>
+    </div>
+  </section>
 </main>
 
 <footer class="footer">
@@ -122,20 +135,55 @@ a{color:var(--primary-dark);text-decoration:none;}
 </footer>
 
 <script>
-/* 零依赖双语切换 + 提交提示 */
+/* 踩一踩脚印 */
+document.getElementById('stepBtn').addEventListener('click',()=>{for(let i=0;i<6;i++)createFootprint();});
+function createFootprint(){
+  const ft=document.createElement('div');ft.innerHTML='👣';
+  ft.style.cssText='position:fixed;bottom:-50px;left:'+Math.random()*window.innerWidth+'px;font-size:20px;opacity:.8;pointer-events:none;z-index:9999;transition:all 3.5s ease-out;';
+  document.body.appendChild(ft);
+  setTimeout(()=>{ft.style.bottom='120vh';ft.style.opacity='0';ft.style.transform='rotate('+ (Math.random()*360) +'deg) scale(0.6)';},10);
+  setTimeout(()=>ft.remove(),2500);
+}
+
+/* 浏览量 */
+fetch('https://raw.githubusercontent.com/purple-sys-creator/purple-sys-creator.github.io/main/pv.txt')
+  .then(r=>r.text()).then(n=>document.getElementById('pv').textContent=n)
+  .catch(()=>document.getElementById('pv').textContent='统计中...');
+
+/* 留言提交到 GitHub Issue */
 function submitContactForm(e){
   e.preventDefault();
+  const lang=document.documentElement.lang;
   const btn=e.target.querySelector('.btn-submit');
-  btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> '+(document.documentElement.lang==='en'?'Sending...':'发送中...');
+  btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> '+(lang==='en'?'Sending...':'发送中...');
   btn.disabled=true;
-  setTimeout(()=>{
-    alert(document.documentElement.lang==='en'?'Message sent successfully! I will reply within 24 hours.':'留言已发送成功！\n\n我会在24小时内回复您。');
+  const name=document.getElementById('name').value,
+        phone=document.getElementById('phone').value,
+        email=document.getElementById('email').value,
+        message=document.getElementById('message').value;
+  fetch('https://api.github.com/repos/purple-sys-creator/purple-sys-creator.github.io/issues',{
+    method:'POST',
+    headers:{
+      'Accept':'application/vnd.github.v3+json',
+      'Authorization':'token '+'${{ secrets.TOKEN }}'
+    },
+    body:JSON.stringify({
+      title:`新留言 ${new Date().toLocaleString()}`,
+      body:`姓名：${name}\n电话：${phone}\n邮箱：${email}\n留言：${message}`
+    })
+  }).then(()=>{
+    alert(lang==='en'?'Message sent! I will reply within 24 h.':'留言已发送成功！\n\n我会在24小时内回复您。');
     btn.innerHTML='<i class="fas fa-paper-plane"></i> <span data-en="Send Message">发送留言</span>';
     btn.disabled=false;
     e.target.reset();
-    applyLang(document.documentElement.lang); // 恢复按钮文字
-  },1500);
+  }).catch(()=>{
+    alert(lang==='en'?'Failed, please retry.':'发送失败，请重试。');
+    btn.innerHTML='<i class="fas fa-paper-plane"></i> <span data-en="Send Message">发送留言</span>';
+    btn.disabled=false;
+  });
 }
+
+/* 滚动动画 */
 function animateOnScroll(){
   document.querySelectorAll('.animate-on-scroll').forEach(el=>{
     if(el.getBoundingClientRect().top<window.innerHeight-150) el.classList.add('animated');
@@ -144,6 +192,7 @@ function animateOnScroll(){
 window.addEventListener('load',animateOnScroll);
 window.addEventListener('scroll',animateOnScroll);
 
+/* 双语切换核心 */
 (function(){
   const key='siteLang';
   function applyLang(lang){
