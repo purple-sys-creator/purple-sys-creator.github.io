@@ -1,223 +1,157 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>联系方式 - 国际物流之旅</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        /* ===== 浅紫色主题 ===== */
-        :root{--primary:#c8a2c8;--primary-dark:#9c6ea6;--light:#f5f0f7;--dark:#2c2c54;}
-        *{margin:0;padding:0;box-sizing:border-box;}
-        body{font-family:'Segoe UI','Microsoft YaHei',Arial,sans-serif;line-height:1.6;color:#333;background:var(--light);}
-        .navbar{background:var(--light);padding:1rem 0;position:fixed;width:100%;top:0;z-index:1000;box-shadow:0 2px 5px rgba(0,0,0,.1);}
-        .nav-container{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:0 2rem;}
-        .logo{color:var(--dark);font-size:1.5rem;font-weight:600;text-decoration:none;}
-        .nav-menu{display:flex;list-style:none;gap:1.5rem;}
-        .nav-menu a{color:var(--dark);text-decoration:none;padding:.5rem 1rem;transition:color .3s;font-weight:500;}
-        .nav-menu a:hover,.nav-menu a.active{color:var(--primary-dark);}
-        .main-content{margin-top:60px;}
-        .page-header{height:50vh;margin-top:60px;background:url('https://images.unsplash.com/photo-1474487548417-781cb71495f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;color:white;}
-        .page-header::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.45);}
-        .page-header-content{position:relative;z-index:1;max-width:800px;padding:0 2rem;}
-        .page-title{font-size:2.5rem;margin-bottom:1rem;font-weight:600;}
-        .page-subtitle{font-size:1.1rem;opacity:.9;}
-        .contact-form-section{padding:4rem 0;background:white;}
-        .container{max-width:1200px;margin:0 auto;padding:0 2rem;}
-        .section-title{text-align:center;font-size:2rem;color:var(--dark);margin-bottom:3rem;font-weight:600;}
-        .form-container{background:var(--light);padding:3rem;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.1);max-width:800px;margin:0 auto;}
-        .form-title{text-align:center;font-size:1.8rem;color:var(--dark);margin-bottom:2rem;}
-        .form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;margin-bottom:2rem;}
-        .form-group{margin-bottom:1.5rem;}
-        .form-label{display:block;margin-bottom:.5rem;color:var(--dark);font-weight:600;}
-        .form-input,.form-textarea,.form-select{width:100%;padding:1rem 1.5rem;border:2px solid #e9ecef;border-radius:10px;font-size:1rem;transition:all .3s;background:#fff;}
-        .form-input:focus,.form-textarea:focus,.form-select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(200,162,200,.2);}
-        .form-textarea{resize:vertical;min-height:120px;}
-        .btn-submit{display:inline-block;padding:1rem 2rem;background:var(--primary);color:white;text-decoration:none;border:none;border-radius:50px;font-size:1.1rem;font-weight:600;cursor:pointer;transition:background .3s ease;}
-        .btn-submit:hover{background:var(--primary-dark);}
-        .map-section{padding:4rem 0;background:var(--light);}
-        .map-container{background:white;padding:2rem;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.1);text-align:center;}
-        .map-placeholder{height:500px;background:linear-gradient(135deg,#f5f0f7 0%,#e9ecef 100%);border-radius:15px;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#666;border:2px dashed #dee2e6;position:relative;overflow:hidden;}
-        .map-icon{font-size:4rem;margin-bottom:1rem;color:var(--primary);}
-        .map-title{font-size:1.5rem;margin-bottom:1rem;color:var(--dark);}
-        .map-subtitle{font-size:1rem;margin-bottom:.5rem;color:#555;}
-        .map-note{font-size:.85rem;color:#777;}
-        .footer{background:var(--primary);color:white;text-align:center;padding:2rem 0;}
-        .footer-content{max-width:1200px;margin:0 auto;padding:0 2rem;}
-        @media (max-width:768px){.contact-details{flex-direction:column;gap:1rem;}.form-grid{grid-template-columns:1fr;}}
-        .animate-on-scroll{opacity:0;transform:translateY(30px);transition:all .6s ease;}
-        .animate-on-scroll.animated{opacity:1;transform:translateY(0);}
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-en="Contact Us - International Logistics Journey">联系方式 - 国际物流之旅</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+/* ===== 浅紫色主题 ===== */
+:root{--primary:#c8a2c8;--primary-dark:#9c6ea6;--light:#f5f0f7;--dark:#2c2c54;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI','Microsoft YaHei',Arial,sans-serif;line-height:1.6;color:#333;background:var(--light);}
+a{color:var(--primary-dark);text-decoration:none;}
+.navbar{background:var(--light);padding:1rem 0;position:fixed;width:100%;top:0;z-index:1000;box-shadow:0 2px 5px rgba(0,0,0,.1);}
+.nav-container{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:0 2rem;}
+.logo{color:var(--dark);font-size:1.5rem;font-weight:600;}
+.nav-menu{display:flex;list-style:none;gap:1.5rem;}
+.nav-menu a{color:var(--dark);padding:.5rem 1rem;transition:color .3s;font-weight:500;}
+.nav-menu a:hover,.nav-menu a.active{color:var(--primary-dark);}
+.main-content{margin-top:60px;}
+.page-header{height:50vh;margin-top:60px;background:url('https://images.unsplash.com/photo-1474487548417-781cb71495f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;color:white;}
+.page-header::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.45);}
+.page-header-content{position:relative;z-index:1;max-width:800px;padding:0 2rem;}
+.page-title{font-size:2.5rem;margin-bottom:1rem;font-weight:600;}
+.page-subtitle{font-size:1.1rem;opacity:.9;}
+.contact-form-section{padding:4rem 0;background:white;}
+.container{max-width:1200px;margin:0 auto;padding:0 2rem;}
+.section-title{text-align:center;font-size:2rem;color:var(--dark);margin-bottom:3rem;font-weight:600;}
+.form-container{background:var(--light);padding:3rem;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.1);max-width:800px;margin:0 auto;}
+.form-title{text-align:center;font-size:1.8rem;color:var(--dark);margin-bottom:2rem;}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;margin-bottom:2rem;}
+.form-group{margin-bottom:1.5rem;}
+.form-label{display:block;margin-bottom:.5rem;color:var(--dark);font-weight:600;}
+.form-input,.form-textarea,.form-select{width:100%;padding:1rem 1.5rem;border:2px solid #e9ecef;border-radius:10px;font-size:1rem;transition:all .3s;background:#fff;}
+.form-input:focus,.form-textarea:focus,.form-select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(200,162,200,.2);}
+.form-textarea{resize:vertical;min-height:120px;}
+.btn-submit{display:inline-block;padding:1rem 2rem;background:var(--primary);color:white;border:none;border-radius:50px;font-size:1.1rem;font-weight:600;cursor:pointer;transition:background .3s ease;}
+.btn-submit:hover{background:var(--primary-dark);}
+.footer{background:var(--primary);color:white;text-align:center;padding:2rem 0;}
+.animate-on-scroll{opacity:0;transform:translateY(30px);transition:all .6s ease;}
+.animate-on-scroll.animated{opacity:1;transform:translateY(0);}
+@media (max-width:768px){.form-grid{grid-template-columns:1fr;}}
+
+/* ===== 双语切换器 ===== */
+.lang-switch{position:fixed;top:12px;right:12px;z-index:9999;display:flex;gap:4px;padding:4px;background:rgba(255,255,255,.85);border-radius:20px;box-shadow:0 2px 8px rgba(120,80,200,.15);backdrop-filter:blur(4px);}
+.lang-switch button{border:none;padding:6px 14px;border-radius:16px;font-size:13px;cursor:pointer;transition:.25s;color:#6b46c1;background:transparent;}
+.lang-switch button.active{background:#6b46c1;color:#fff;}
+</style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo"><i class="fas fa-shipping-fast"></i> 国际物流之旅</a>
-            <ul class="nav-menu">
-                <li><a href="index.html">首页</a></li>
-                <li><a href="contact.html" class="active">联系方式</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <main class="main-content">
-        <section class="page-header">
-            <div class="page-header-content">
-                <h1 class="page-title animate-on-scroll">联系方式</h1>
-                <p class="page-subtitle animate-on-scroll">24小时为您服务，随时为您提供专业的物流咨询</p>
-            </div>
-        </section>
-
-        <section class="contact-form-section">
-            <div class="container">
-                <div class="form-container animate-on-scroll">
-                    <h2 class="form-title">在线留言</h2>
-                    <form onsubmit="submitContactForm(event)">
-                        <div class="form-grid">
-                            <div class="form-group"><label class="form-label" for="name">姓名 *</label><input type="text" id="name" class="form-input" required></div>
-                            <div class="form-group"><label class="form-label" for="phone">电话 *</label><input type="tel" id="phone" class="form-input" required></div>
-                            <div class="form-group"><label class="form-label" for="email">邮箱 *</label><input type="email" id="email" class="form-input" required></div>
-                            <div class="form-group"><label class="form-label" for="service">服务类型</label>
-                                <select id="service" class="form-select">
-                                    <option value="">请选择服务类型</option>
-                                    <option value="ocean">海运服务</option>
-                                    <option value="air">空运服务</option>
-                                    <option value="rail">铁路运输</option>
-                                    <option value="custom">定制服务</option>
-                                    <option value="other">其他咨询</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group"><label class="form-label" for="message">留言内容 *</label><textarea id="message" class="form-textarea" placeholder="请详细描述您的需求..." required></textarea></div>
-                        <div style="text-align:center;"><button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> 发送留言</button></div>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <section class="map-section">
-            <div class="container">
-                <div class="map-container animate-on-scroll">
-                    
-              
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 2025 国际物流之旅 | 个人国际物流服务</p>
-            <p>电话：+86 18222510291 | 邮箱：jiugu92@gmail.com</p>
-        </div>
-    </footer>
-
-    <script>
-        function submitContactForm(e) {
-            e.preventDefault();
-            const btn = e.target.querySelector('.btn-submit');
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 发送中...';
-            btn.disabled = true;
-            setTimeout(() => {
-                alert('留言已发送成功！\n\n我会在24小时内回复您。\n\n感谢您的信任！');
-                btn.innerHTML = '<i class="fas fa-paper-plane"></i> 发送留言';
-                btn.disabled = false;
-                e.target.reset();
-            }, 1500);
-        }
-        function animateOnScroll() {
-            const elements = document.querySelectorAll('.animate-on-scroll');
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('animated');
-                }
-            });
-        }
-        window.addEventListener('load', animateOnScroll);
-        window.addEventListener('scroll', animateOnScroll);
-    </script>
-  <!-- 踩一踩按钮 -->
-<section style="text-align:center;padding:2rem 0;background:#f5f0f7;">
-  <button id="stepBtn" style="padding:.6rem 1.2rem;background:#c8a2c8;color:#fff;border:none;border-radius:30px;font-size:.9rem;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:transform .2s;">
-    踩一踩 👣
-  </button>
-</section>
-
-<script>
-/* 踩一踩脚印飘动 */
-document.getElementById('stepBtn').addEventListener('click',function(){
-  for(let i=0;i<6;i++){
-    createFootprint();
-  }
-});
-
-function createFootprint(){
-  const ft=document.createElement('div');
-  ft.innerHTML='👣';
-  ft.style.position='fixed';
-  ft.style.bottom='-50px';
-  ft.style.left=Math.random()*window.innerWidth+'px';
-  ft.style.fontSize='20px';
-  ft.style.opacity='0.8';
-  ft.style.pointerEvents='none';
-  ft.style.zIndex='9999';
-  ft.style.transition='all 3.5s ease-out';
-  document.body.appendChild(ft);
-
-  setTimeout(()=>{
-    ft.style.bottom='120vh';
-    ft.style.opacity='0';
-    ft.style.transform='rotate('+ (Math.random()*360) +'deg) scale(0.6)';
-  },10);
-
-  setTimeout(()=>ft.remove(),2500);
-}
-</script>
-  
-
-<!-- ===== 浏览量 + 留言后台（新增） ===== -->
-<!-- 浏览量显示 -->
-<div style="text-align:center;margin:2rem 0;color:#777;">
-  本站浏览量：<span id="pv">加载中...</span> 次
+<!-- 双语切换按钮 -->
+<div class="lang-switch">
+  <button id="btn-zh" onclick="setLang('zh')">中文</button>
+  <button id="btn-en" onclick="setLang('en')">English</button>
 </div>
 
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="logo"><i class="fas fa-shipping-fast"></i> <span data-en="International Logistics Journey">国际物流之旅</span></a>
+    <ul class="nav-menu">
+      <li><a href="index.html" data-en="Home">首页</a></li>
+      <li><a href="contact.html" class="active" data-en="Contact">联系方式</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="main-content">
+  <section class="page-header">
+    <div class="page-header-content">
+      <h1 class="page-title animate-on-scroll" data-en="Contact Us">联系方式</h1>
+      <p class="page-subtitle animate-on-scroll" data-en="24/7 at your service, ready to provide professional logistics consultation">24小时为您服务，随时为您提供专业的物流咨询</p>
+    </div>
+  </section>
+
+  <section class="contact-form-section">
+    <div class="container">
+      <div class="form-container animate-on-scroll">
+        <h2 class="form-title" data-en="Online Message">在线留言</h2>
+        <form onsubmit="submitContactForm(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label" for="name" data-en="Name *">姓名 *</label>
+              <input type="text" id="name" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="phone" data-en="Phone *">电话 *</label>
+              <input type="tel" id="phone" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email" data-en="Email *">邮箱 *</label>
+              <input type="email" id="email" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="service" data-en="Service Type">服务类型</label>
+              <select id="service" class="form-select">
+                <option value="" data-en="Please select">请选择服务类型</option>
+                <option value="ocean" data-en="Sea Freight">海运服务</option>
+                <option value="air" data-en="Air Freight">空运服务</option>
+                <option value="rail" data-en="Rail Transport">铁路运输</option>
+                <option value="custom" data-en="Custom Service">定制服务</option>
+                <option value="other" data-en="Other Inquiry">其他咨询</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="message" data-en="Message *">留言内容 *</label>
+            <textarea id="message" class="form-textarea" placeholder="请详细描述您的需求..." data-en-placeholder="Please describe your needs in detail..." required></textarea>
+          </div>
+          <div style="text-align:center;">
+            <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> <span data-en="Send Message">发送留言</span></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-content">
+    <p>&copy; 2025 <span data-en="International Logistics Journey">国际物流之旅</span> | <span data-en="Personal International Logistics Service">个人国际物流服务</span></p>
+    <p data-en="Phone: +86 18222510291 | Email: jiugu92@gmail.com">电话：+86 18222510291 | 邮箱：jiugu92@gmail.com</p>
+  </div>
+</footer>
+
+<!-- 零依赖双语核心 -->
 <script>
-// 读取浏览量
-fetch('https://raw.githubusercontent.com/purple-sys-creator/purple-sys-creator.github.io/main/pv.txt')
-  .then(r => r.text())
-  .then(n => document.getElementById('pv').textContent = n)
-  .catch(() => document.getElementById('pv').textContent = '统计中...');
+(function(){
+  const key='siteLang';
+  function applyLang(lang){
+    document.documentElement.lang=lang;
+    document.querySelectorAll('[data-en]').forEach(el=>{
+      if(lang==='en'){
+        if(!el.dataset.zh) el.dataset.zh=el.textContent;
+        el.textContent=el.dataset.en;
+      }else{
+        el.textContent=el.dataset.zh||el.textContent;
+      }
+    });
+    // placeholder 切换
+    document.querySelectorAll('[data-en-placeholder]').forEach(el=>{
+      if(lang==='en'){
+        if(!el.dataset.zhPlaceholder) el.dataset.zhPlaceholder=el.placeholder;
+        el.placeholder=el.dataset.enPlaceholder;
+      }else{
+        el.placeholder=el.dataset.zhPlaceholder||el.placeholder;
+      }
+    });
+    document.querySelectorAll('.lang-switch button').forEach(btn=>btn.classList.remove('active'));
+    document.getElementById('btn-'+lang).classList.add('active');
+    localStorage.setItem(key,lang);
+  }
+  window.setLang=applyLang;
+  applyLang(localStorage.getItem(key)||'zh');
+})();
 </script>
-
-<!-- 留言提交到 GitHub Issue（后台可见） -->
-<script>
-function submitContactForm(e) {
-  e.preventDefault();
-  const name = document.getElementById('name').value;
-  const phone = document.getElementById('phone').value;
-  const email = document.getElementById('email').value;
-  const message = document.getElementById('message').value;
-
-  fetch('https://api.github.com/repos/purple-sys-creator/purple-sys-creator.github.io/issues', {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/vnd.github.v3+json',
-      'Authorization': 'token ' + '${{ secrets.TOKEN }}'
-    },
-    body: JSON.stringify({
-      title: `新留言 ${new Date().toLocaleString()}`,
-      body: `姓名：${name}\n电话：${phone}\n邮箱：${email}\n留言：${message}`
-    })
-  }).then(() => {
-    alert('留言已发送！我会在 24 小时内回复您。');
-    e.target.reset();
-  }).catch(() => alert('发送失败，请重试。'));
-}
-</script>
-<!-- ===== /新增结束 ===== -->
-
-</body>
-</html>
 </body>
 </html>
