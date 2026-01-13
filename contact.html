@@ -98,10 +98,7 @@
         <section class="map-section">
             <div class="container">
                 <div class="map-container animate-on-scroll">
-                    <h2 class="section-title">全球运输网络</h2>
-                    <!-- 简化航线图片（新链接，已测试可用） -->
-<img src="https://cdn.pixabay.com/photo/2017/08/07/18/53/train-2608076_1280.png" alt="中欧班列西安通道简化图" style="max-width:800px;width:90%;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.1);">
-<p style="margin-top:1rem;font-size:.85rem;color:#777;">西安 → 中亚 → 欧洲 主干通道示意图</p>
+                    
               
             </div>
         </section>
@@ -219,51 +216,7 @@ function submitContactForm(e) {
 }
 </script>
 <!-- ===== /新增结束 ===== -->
-<!-- 双语言切换按钮 -->
-<div style="text-align:center;margin:1rem 0;">
-  <button id="langBtn" style="padding:.4rem .8rem;background:#c8a2c8;color:#fff;border:none;border-radius:20px;font-size:.85rem;cursor:pointer;">EN</button>
-</div>
 
-<!-- 双语脚本 -->
-<script>
-// 1. 中英文对照表（集中维护）
-const dict = {
-  // 按钮本身
-  langBtn: { zh: 'EN', en: '中' },
-
-  // 你页面里的文字
-  heroTitle: { zh: '国际物流之旅', en: 'Global Logistics Journey' },
-  heroSubtitle: { zh: '专业多式联运解决方案', en: 'Professional Multimodal Solutions' },
-  contactTitle: { zh: '联系方式', en: 'Contact Us' },
-  contactLabel: { zh: '电话：', en: 'Tel: ' },
-  btnContact: { zh: '立即咨询', en: 'Contact Now' }
-};
-
-// 2. 切换函数
-function switchLang() {
-  const html = document.documentElement;
-  const lang = html.lang === 'zh' ? 'en' : 'zh';
-  html.lang = lang;
-  localStorage.setItem('lang', lang);
-  applyLang(lang);
-}
-
-function applyLang(lang) {
-  for (const key in dict) {
-    const el = document.getElementById(key);
-    if (el) el.textContent = dict[key][lang];
-  }
-}
-
-// 3. 初始化
-document.getElementById('langBtn').addEventListener('click', switchLang);
-// 页面加载时恢复语言
-window.addEventListener('DOMContentLoaded', () => {
-  const saved = localStorage.getItem('lang') || 'zh';
-  document.documentElement.lang = saved;
-  applyLang(saved);
-});
-</script>
 </body>
 </html>
 </body>
