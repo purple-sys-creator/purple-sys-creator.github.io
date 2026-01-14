@@ -1,0 +1,11 @@
+name: get-pv
+on:
+  workflow_dispatch:
+
+jobs:
+  read:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "pv=$(cat docs/pv.txt)" >> $GITHUB_ENV
+      - run: echo "::set-output name=pv::${{ env.pv }}"
