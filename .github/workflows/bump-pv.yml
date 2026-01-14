@@ -9,10 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: |
+      - name: +1
+        run: |
           old=$(cat docs/pv.txt)
           new=$((old + 1))
           echo $new > docs/pv.txt
+          echo "new=$new" >> $GITHUB_ENV          # 给 commit message 用
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: bump pv → ${{ env.new }}"
+          file_pattern: "docs/pv.txt"            # 强制把 pv.txt 加入提交
