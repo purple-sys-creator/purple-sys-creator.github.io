@@ -174,9 +174,26 @@ function createFootprint(){
 }
 
 /* 浏览量 */
-fetch('https://raw.githubusercontent.com/purple-sys-creator/purple-sys-creator.github.io/main/pv.txt')
-  .then(r=>r.text()).then(n=>document.getElementById('pv').textContent=n)
-  .catch(()=>document.getElementById('pv').textContent='统计中...');
+/* 浏览量：先+1，再读取 */
+(function(){
+  // 1. 触发 Actions +1
+  fetch('https://api.github.com/repos/purple-sys-creator/purple-sys-creator.github.io/dispatches',{
+    method:'POST',
+    headers:{
+      'Accept':'application/vnd.github+json',
+      'Authorization':'token ghp_xxxxxxxxxxxxxxxxxxxx'  // 换成你刚建的 PAT
+    },
+    body:JSON.stringify({event_type:'bump-pv'})
+  }).catch(()=>{});  // 失败也静默，不影响体验
+
+  // 2. 等 2 秒让 Actions commit 完，再读最新数字
+  setTimeout(()=>{
+    fetch('https://raw.githubusercontent.com/purple-sys-creator/purple-sys-creator.github.io/main/docs/pv.txt')
+      .then(r=>r.text())
+      .then(n=>document.getElementById('pv').textContent=n)
+      .catch(()=>document.getElementById('pv').textContent='统计中...');
+  },2000);
+})();
 
 /* 留言提交到 GitHub Issue */
 function submitContactForm(e){
