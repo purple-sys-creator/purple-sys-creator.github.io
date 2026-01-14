@@ -1,0 +1,67 @@
+<!-- 保存为 test.html，推到仓库后访问 https://你的用户名.github.io/test.html -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Token & Dispatch 测试页</title>
+<style>body{font-family:monospace;margin:2rem;line-height:1.8}</style>
+</head>
+<body>
+<h2>① 校验 token 是否有效</h2>
+<button onclick="chkToken()">点我测试</button>
+<pre id="tLog"></pre>
+
+<h2>② 触发 +1 dispatch</h2>
+<button onclick="bump()">点我 dispatch</button>
+<pre id="dLog"></pre>
+
+<h2>③ 实时 pv.txt 内容</h2>
+<button onclick="loadPv()">刷新数字</button>
+<pre id="pvBox">加载中...</pre>
+
+<script>
+const TOKEN = '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';   // ← 只改这一行
+
+function log(elId, txt){
+  document.getElementById(elId).textContent = typeof txt === 'object' ? JSON.stringify(txt,null,2) : txt;
+}
+
+/* ① 看 token 能不能拿到用户信息 */
+function chkToken(){
+  log('tLog','请求中...');
+  fetch('https://api.github.com/user',{
+    headers:{Authorization:`token ${TOKEN}`}
+  })
+  .then(r=>Promise.all([r.status,r.json()]))
+  .then(([s,json])=>log('tLog',`HTTP状态：${s}\n登录名：${json.login||'无效'}`))
+  .catch(e=>log('tLog',e));
+}
+
+/* ② 发 dispatch */
+function bump(){
+  log('dLog','dispatch 请求中...');
+  fetch('https://api.github.com/repos/purple-sys-creator/purple-sys-creator.github.io/dispatches',{
+    method:'POST',
+    headers:{
+      'Accept':'application/vnd.github+json',
+      'Authorization':`token ${TOKEN}`
+    },
+    body:JSON.stringify({event_type:'bump-pv'})
+  })
+  .then(r=>log('dLog',`dispatch 状态：${r.status} (${r.statusText})`))
+  .catch(e=>log('dLog',e));
+}
+
+/* ③ 拉最新 pv */
+function loadPv(){
+  fetch('https://raw.githubusercontent.com/purple-sys-creator/purple-sys-creator.github.io/main/docs/pv.txt')
+    .then(r=>r.text())
+    .then(t=>log('pvBox',`pv.txt 内容：${t}`))
+    .catch(e=>log('pvBox',e));
+}
+
+// 页面打开自动拉一次
+loadPv();
+</script>
+</body>
+</html>
