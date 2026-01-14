@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="zh-CN">
 <head>
@@ -8,25 +7,17 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'AW-17860394238');
 </script>
-  <!-- Event snippet for 联系人 conversion page
-In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
 <script>
 function gtag_report_conversion(url) {
   var callback = function () {
-    if (typeof(url) != 'undefined') {
-      window.location = url;
-    }
+    if (typeof(url) != 'undefined') { window.location = url; }
   };
   gtag('event', 'conversion', {
       'send_to': 'AW-17860394238/P0cdCKOjhd8bEP75v8RC',
-      'value': 1.0,
-      'currency': 'CNY',
-      'event_callback': callback
-  });
-  return false;
+      'value': 1.0, 'currency': 'CNY', 'event_callback': callback
+  }); return false;
 }
 </script>
 
@@ -35,7 +26,6 @@ function gtag_report_conversion(url) {
 <title data-en="Contact Us - International Logistics Journey">联系方式 - 国际物流之旅</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <style>
-/* ===== 浅紫色主题 ===== */
 :root{--primary:#c8a2c8;--primary-dark:#9c6ea6;--light:#f5f0f7;--dark:#2c2c54;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Segoe UI','Microsoft YaHei',Arial,sans-serif;line-height:1.6;color:#333;background:var(--light);}
@@ -70,20 +60,20 @@ a{color:var(--primary-dark);text-decoration:none;}
 .animate-on-scroll.animated{opacity:1;transform:translateY(0);}
 @media (max-width:768px){.form-grid{grid-template-columns:1fr;}}
 
-/* 双语切换器 */
+/* 双语切换 */
 .lang-switch{position:fixed;top:12px;right:12px;z-index:9999;display:flex;gap:4px;padding:4px;background:rgba(255,255,255,.85);border-radius:20px;box-shadow:0 2px 8px rgba(120,80,200,.15);backdrop-filter:blur(4px);}
 .lang-switch button{border:none;padding:6px 14px;border-radius:16px;font-size:13px;cursor:pointer;transition:.25s;color:#6b46c1;background:transparent;}
 .lang-switch button.active{background:#6b46c1;color:#fff;}
 
-/* 踩一踩按钮 */
+/* 踩一踩 */
 #stepBtn{padding:.6rem 1.2rem;background:var(--primary);color:#fff;border:none;border-radius:30px;font-size:.9rem;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:transform .2s;}
 #stepBtn:hover{transform:scale(1.05);}
 </style>
 </head>
 <body>
-<!-- 双语切换按钮 -->
+<!-- 双语切换 -->
 <div class="lang-switch">
-  <button id="btn-zh" onclick="setLang('zh')">中文</button>
+  <button id="btn-zh" onclick="setLang('zh')" class="active">中文</button>
   <button id="btn-en" onclick="setLang('en')">English</button>
 </div>
 
@@ -147,7 +137,7 @@ a{color:var(--primary-dark);text-decoration:none;}
     </div>
   </section>
 
-  <!-- 踩一踩 + 浏览量 + 留言后台 -->
+  <!-- 踩一踩 + 浏览量 -->
   <section style="text-align:center;padding:2rem 0;background:var(--light);">
     <button id="stepBtn"><span data-en="Step on it 👣">踩一踩 👣</span></button>
     <div style="margin-top:1rem;color:#777;">
@@ -174,20 +164,14 @@ function createFootprint(){
   setTimeout(()=>ft.remove(),2500);
 }
 
-/* 浏览量 */
 /* 浏览量：先+1，再读取 */
 (function(){
-  // 1. 触发 Actions +1
   fetch('https://api.github.com/repos/purple-sys-creator/purple-sys-creator.github.io/dispatches',{
     method:'POST',
-    headers:{
-      'Accept':'application/vnd.github+json',
-      'Authorization':'token ghp_xxxxxxxxxxxxxxxxxxxx'  // 换成你刚建的 PAT
-    },
+    headers:{'Accept':'application/vnd.github+json'},
     body:JSON.stringify({event_type:'bump-pv'})
-  }).catch(()=>{});  // 失败也静默，不影响体验
+  }).catch(()=>{});
 
-  // 2. 等 2 秒让 Actions commit 完，再读最新数字
   setTimeout(()=>{
     fetch('https://raw.githubusercontent.com/purple-sys-creator/purple-sys-creator.github.io/main/docs/pv.txt')
       .then(r=>r.text())
@@ -196,7 +180,7 @@ function createFootprint(){
   },2000);
 })();
 
-/* 留言提交到 GitHub Issue */
+/* 留言提交（零 token） */
 function submitContactForm(e){
   e.preventDefault();
   const lang=document.documentElement.lang;
@@ -207,36 +191,31 @@ function submitContactForm(e){
         phone=document.getElementById('phone').value,
         email=document.getElementById('email').value,
         message=document.getElementById('message').value;
+
   fetch('https://api.github.com/repos/purple-sys-creator/purple-sys-creator.github.io/dispatches',{
-  method:'POST',
-  headers:{ 'Accept':'application/vnd.github+json' },   // 无 Authorization
-  body:JSON.stringify({
-    event_type:'issue-open',
-    client_payload:{
-      body:JSON.stringify({
-        title:`新留言 ${new Date().toLocaleString()}`,
-        body:`姓名：${name}\n电话：${phone}\n邮箱：${email}\n留言：${message}`
-      })
-    }
+    method:'POST',
+    headers:{'Accept':'application/vnd.github+json'},
+    body:JSON.stringify({
+      event_type:'issue-open',
+      client_payload:{
+        body:JSON.stringify({
+          title:`新留言 ${new Date().toLocaleString()}`,
+          body:`姓名：${name}\n电话：${phone}\n邮箱：${email}\n留言：${message}`
+        })
+      }
+    })
   })
-})
-.then(r=>{
-  if(r.status===204){
-    alert(lang==='en'?'Message sent! I will reply within 24 h.':'留言已发送成功！\n\n我会在24小时内回复您。');
-    e.target.reset();
-  }else{
-    alert(lang==='en'?'Failed, please retry.':'发送失败，请重试。');
-  }
-})
-.catch(()=>{
-  alert(lang==='en'?'Failed, please retry.':'发送失败，请重试。');
-});
-  }).then(()=>{
-    alert(lang==='en'?'Message sent! I will reply within 24 h.':'留言已发送成功！\n\n我会在24小时内回复您。');
+  .then(r=>{
+    if(r.status===204){
+      alert(lang==='en'?'Message sent! I will reply within 24 h.':'留言已发送成功！\n\n我会在24小时内回复您。');
+      e.target.reset();
+    }else{
+      alert(lang==='en'?'Failed, please retry.':'发送失败，请重试。');
+    }
     btn.innerHTML='<i class="fas fa-paper-plane"></i> <span data-en="Send Message">发送留言</span>';
     btn.disabled=false;
-    e.target.reset();
-  }).catch(()=>{
+  })
+  .catch(()=>{
     alert(lang==='en'?'Failed, please retry.':'发送失败，请重试。');
     btn.innerHTML='<i class="fas fa-paper-plane"></i> <span data-en="Send Message">发送留言</span>';
     btn.disabled=false;
@@ -252,7 +231,7 @@ function animateOnScroll(){
 window.addEventListener('load',animateOnScroll);
 window.addEventListener('scroll',animateOnScroll);
 
-/* 双语切换核心 */
+/* 双语切换 */
 (function(){
   const key='siteLang';
   function applyLang(lang){
@@ -283,4 +262,3 @@ window.addEventListener('scroll',animateOnScroll);
 </script>
 </body>
 </html>
-
