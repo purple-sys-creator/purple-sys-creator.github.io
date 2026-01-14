@@ -207,16 +207,30 @@ function submitContactForm(e){
         phone=document.getElementById('phone').value,
         email=document.getElementById('email').value,
         message=document.getElementById('message').value;
-  fetch('https://api.github.com/repos/purple-sys-creator/purple-sys-creator.github.io/issues',{
-    method:'POST',
-    headers:{
-      'Accept':'application/vnd.github.v3+json',
-      'Authorization':'token '+'${{ secrets.TOKEN }}'
-    },
-    body:JSON.stringify({
-      title:`新留言 ${new Date().toLocaleString()}`,
-      body:`姓名：${name}\n电话：${phone}\n邮箱：${email}\n留言：${message}`
-    })
+  fetch('https://api.github.com/repos/purple-sys-creator/purple-sys-creator.github.io/dispatches',{
+  method:'POST',
+  headers:{ 'Accept':'application/vnd.github+json' },   // 无 Authorization
+  body:JSON.stringify({
+    event_type:'issue-open',
+    client_payload:{
+      body:JSON.stringify({
+        title:`新留言 ${new Date().toLocaleString()}`,
+        body:`姓名：${name}\n电话：${phone}\n邮箱：${email}\n留言：${message}`
+      })
+    }
+  })
+})
+.then(r=>{
+  if(r.status===204){
+    alert(lang==='en'?'Message sent! I will reply within 24 h.':'留言已发送成功！\n\n我会在24小时内回复您。');
+    e.target.reset();
+  }else{
+    alert(lang==='en'?'Failed, please retry.':'发送失败，请重试。');
+  }
+})
+.catch(()=>{
+  alert(lang==='en'?'Failed, please retry.':'发送失败，请重试。');
+});
   }).then(()=>{
     alert(lang==='en'?'Message sent! I will reply within 24 h.':'留言已发送成功！\n\n我会在24小时内回复您。');
     btn.innerHTML='<i class="fas fa-paper-plane"></i> <span data-en="Send Message">发送留言</span>';
@@ -269,3 +283,4 @@ window.addEventListener('scroll',animateOnScroll);
 </script>
 </body>
 </html>
+
