@@ -122,12 +122,12 @@
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="footer-content">
-      <p>&copy; 2025 <span data-en="International Logistics Journey">国际物流之旅</span> | <span data-en="Personal International Logistics Service">个人国际物流服务</span></p>
-      <p data-en="Phone: +86 18222510291 | Email: jiugu92@gmail.com">电话：+86 18222510291 | 邮箱：jiugu92@gmail.com</p>
-    </div>
-  </footer>
+  <footer class="footer" style="text-align: center; padding: 2rem 0;">
+  <div class="footer-content">
+    <p>&copy; 2025 国际物流之旅 | 个人国际物流服务</p>
+    <p data-en="Phone: +86 18222510291 | Email: jiugu92@gmail.com">电话：+86 18222510291 | 邮箱：jiugu92@gmail.com</p>
+  </div>
+</footer>
 
   <script>
     // ========== 工具函数（保留） ==========
@@ -172,29 +172,30 @@
     }
 
     // ========== 不蒜子浏览量统计 ==========
-    async function loadBusuanzi() {
-      try {
-        // 动态加载不蒜子脚本
-        const script = document.createElement('script');
-        script.src = '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js';
-        script.async = true;
-        document.body.appendChild(script);
+async function loadBusuanzi() {
+  try {
+    // 改用https协议地址，提升加载稳定性
+    const script = document.createElement('script');
+    script.src = 'https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js';
+    script.async = true;
+    document.body.appendChild(script);
 
-        // 等待脚本加载完成
-        await new Promise(resolve => {
-          script.onload = resolve;
-          script.onerror = resolve; // 加载失败也继续
-        });
+    // 等待脚本加载完成（仅在成功时执行后续逻辑）
+    await new Promise((resolve, reject) => {
+      script.onload = resolve;
+      script.onerror = () => reject(new Error('不蒜子脚本加载失败'));
+    });
 
-        // 读取统计数据
-        setTimeout(() => {
-          document.getElementById('pv').textContent = window.$busuanzi_site_pv || '统计中...';
-        }, 1000);
-      } catch (e) {
-        document.getElementById('pv').textContent = '统计中...';
-      }
-    }
-    window.addEventListener('load', loadBusuanzi);
+    // 缩短延迟时间，更快显示数据
+    setTimeout(() => {
+      document.getElementById('pv').textContent = window.$busuanzi_site_pv || '统计中...';
+    }, 500);
+  } catch (e) {
+    // 加载失败时提示更清晰
+    document.getElementById('pv').textContent = '统计暂不可用';
+  }
+}
+window.addEventListener('load', loadBusuanzi);
 
     // ========== 滚动动画 ==========
     function animateOnScroll(){
@@ -248,6 +249,7 @@
   </script>
 </body>
 </html>
+
 
 
 
