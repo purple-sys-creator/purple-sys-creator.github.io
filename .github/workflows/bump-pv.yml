@@ -9,14 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-            - name: +1
+      - name: +1
         run: |
-          old=$(cat docs/pv.txt | tr -d '[:space:]')  # 去掉空格换行
-          old=${old:-0}                               # 空就当 0
+          old=$(cat docs/pv.txt | tr -d '[:space:]')
+          old=${old:-0}
           new=$((old + 1))
           echo $new > docs/pv.txt
-          echo "new=$new" >> $GITHUB_ENV          # 给 commit message 用
+          echo "new=$new" >> $GITHUB_ENV
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: bump pv → ${{ env.new }}"
-          file_pattern: "docs/pv.txt"            # 强制把 pv.txt 加入提交
+          file_pattern: "docs/pv.txt"
