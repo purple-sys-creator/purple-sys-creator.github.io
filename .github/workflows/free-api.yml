@@ -10,7 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       # 开 Issue
-      - if: github.event.action == 'issue-open'
         run: |
           curl -X POST \
             -H "Accept: application/vnd.github+json" \
