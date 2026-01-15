@@ -1,7 +1,7 @@
 name: free-api
 on:
   repository_dispatch:
-    types: [issue-open]   # 只留这一行即可
+    types: [issue-open]   # 留言
   workflow_dispatch:
 
 jobs:
@@ -9,10 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Create Issue
+      # 开 Issue
+      - if: github.event.action == 'issue-open'
         run: |
           curl -X POST \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: token ${{ secrets.LONG_TOKEN }}" \
             https://api.github.com/repos/${{ github.repository }}/issues \
-            -d '${{ github.event.client_payload.body }}'
+            -d "${{ github.event.client_payload.body }}"
